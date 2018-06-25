@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <!--    namespace对应Mapper接口名                -->
+  <mapper namespace="mapper.StudentMapper">
+  		<!-- 	    id对应Mapper方法名 -->
+  		<select id="findAll" resultType="pojo.Student">
+  			select S_ID,S_NUMBER, S_NAME, S_GENDER, S_AGE, S_MAJOR from STUDENT
+  		</select>
+  		
+  		
+  		<select id="findByGenderAndMajor" resultType="pojo.Student">
+  			select * from Student where S_GENDER=#{s_gender} and S_MAJOR=#{s_major}
+  		</select>
+  	
+  	
+  </mapper>

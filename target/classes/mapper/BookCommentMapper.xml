@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <!--    namespace对应Mapper接口名                -->
+  <mapper namespace="mapper.BookCommentMapper">
+  		<select id="findOne" resultMap="commentDetail">
+  			   select bc.bc_id,b.book_name,bc.comments,p.publisher_name
+		       from books b
+		            inner join book_comments bc on b.book_id=bc.book_id
+		            inner join publisher p on b.publisher_id=p.publisher_id            
+		       where b.book_id=#{book_id}
+  		</select>
+  		<resultMap type="BookComment" id="commentDetail">
+  		<!-- 其中,column对应数据库表中的字段或者别名,property对应pojo类中的字段名 -->
+  		<!-- <id/>标签对应数据库表中的主键列,<result/>标签对应数据库表中的非主键列 -->
+  			<id column="bc_id" property="bc_id"/>
+  			<result column="comments" property="comments"/>
+  			<!-- <association/>标签表示 对一 关系 <collection/>标签表示 对多 关系 -->
+  			<association property="book" javaType="Books">
+  				<id column="book_id" property="book_id"/>
+  				<result column="book_name" property="book_name"/>
+  				<result column="book_brief" property="book_brief"/>
+  				
+  				<association property="publisher" javaType="Publisher">
+					<id column="publisher_id" property="publisher_id"/>
+					<result column="publisher_name" property="publisher_name"/>
+					<result column="publisher_brief" property="publisher_brief"/>
+				</association>
+					
+  			</association>  			
+  		</resultMap>
+  </mapper>
