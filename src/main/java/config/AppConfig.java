@@ -1,4 +1,4 @@
-package operator_crud;
+package config;
 
 import javax.sql.DataSource;
 

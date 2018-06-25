@@ -9,6 +9,7 @@ public class Books {
 	private String book_brief;
 	private Publisher publisher;
 	private List<Author> author;
+	
 	public long getBook_id() {
 		return book_id;
 	}
@@ -39,7 +40,7 @@ public class Books {
 	public void setAuthor(List<Author> author) {
 		this.author = author;
 	}
-	@Override
+	/*@Override
 	public String toString() {
 		List<String> list=new ArrayList<String>();
 		for(Author a:author) {
@@ -48,8 +49,7 @@ public class Books {
 		return "Books [book_id:" + book_id + ", book_name=" + book_name + ", author=" + list +  ", book_brief=" + book_brief + ", publisher="
 				+ publisher.getPublisher_name()+ "]";
 	}
-	
-	
+	*/
 	
 	
 }

@@ -8,8 +8,8 @@ public class Publisher {
 	private long publisher_id;
 	private String publisher_name;
 	private String publisher_brief;
-	@SuppressWarnings("unused")
 	private List<Books> books;
+	
 	public long getPublisher_id() {
 		return publisher_id;
 	}

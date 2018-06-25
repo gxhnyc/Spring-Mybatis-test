@@ -1,27 +1,26 @@
-package author_test;
+package test_main;
 
 import java.util.List;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import mapper.AuthorMapper;
-import pojo.Author;
+import config.AppConfig;
+import mapper.BookCommentMapper;
+import pojo.BookComment;
 
 
 
 
-
-
-public class Author_Main {
+public class comment_test {
 	public static void main(String [] args) {
 		@SuppressWarnings("resource")
 		AnnotationConfigApplicationContext context=
 				new AnnotationConfigApplicationContext(AppConfig.class);
-		AuthorMapper mapper=context.getBean(mapper.AuthorMapper.class);
+		BookCommentMapper mapper=context.getBean(mapper.BookCommentMapper.class);
 		
-		List<Author> list=mapper.findBooksByAuthorName("Martin Fowler");//Martin Fowler
-		for(Author au:list) {
-			System.out.println(au);
+		List<BookComment> list=mapper.findOne(1002L);
+		for(BookComment bc:list) {
+			System.out.println(bc);
 		}
 		
 		

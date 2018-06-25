@@ -11,4 +11,6 @@ public interface PublisherMapper {
 	 * @return
 	 */
 	public Publisher findOne(long id);
+
+	public List<Publisher> findAll();
 }

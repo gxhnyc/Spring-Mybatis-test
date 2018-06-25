@@ -1,14 +1,15 @@
-package operator_crud;
+package test_main;
 
 import java.util.Arrays;
 import java.util.List;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import config.AppConfig;
 import mapper.OperatorMapper;
 import pojo.Operator;
 
 
-public class Main {
+public class Operator_Main {
 
 	public static void main(String[] args) {
 		AnnotationConfigApplicationContext context=
