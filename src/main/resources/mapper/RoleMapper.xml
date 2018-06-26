@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <!--    namespace对应Mapper接口名  -->
+  <mapper namespace="mapper.RoleMapper">
+  		
+  		<select id="findAll" resultMap="roleDetails">
+  			select  r.role_id,r.role_name,r.role_desc,
+          			l.limits_id,l.limits_name,l.limits_desc
+			from role r
+          		left join rolelimits rl on r.role_id=rl.role_id
+          		inner join limits l on rl.limits_id=l.limits_id
+
+  		</select>
+  		<resultMap type="Role" id="roleDetails">
+  			<id column="role_id" property="role_id"/>
+  			<result column="role_name" property="role_name"/>
+  			<result column="role_desc" property="role_desc"/>
+  			<collection property="limits" ofType="Limits">
+  				<id column="limits_id" property="limits_id"/>
+  				<result column="limits_name" property="limits_name"/>
+  				<result column="limits_desc" property="limits_desc"/>
+  			</collection>
+  		</resultMap>
+  </mapper>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <!--    namespace对应Mapper接口名  -->
+  <mapper namespace="mapper.AdministratorMapper">
+  		<select id="findOne" resultMap="adminDetails">
+  			select 	a.admin_id,a.admin_name, a.admin_pwd,a.admin_disabled,
+  					r.role_id,r.role_name,
+  					l.limits_id,l.limits_name,l.limits_desc 
+  			from administrator a
+       				left join role r on a.role_id=r.role_id
+       				left join rolelimits rl on r.role_id=rl.role_id
+       				inner join limits l on l.limits_id=rl.limits_id
+       		where a.admin_id=#{admin_id}
+  		</select>
+  		<select id="findAll" resultMap="adminDetails">
+  			select 	a.admin_id,a.admin_name, a.admin_pwd,a.admin_disabled,
+  					r.role_id,r.role_name,
+  					l.limits_id,l.limits_name,l.limits_desc 
+  			from administrator a
+       				left join role r on a.role_id=r.role_id
+       				left join rolelimits rl on r.role_id=rl.role_id
+       				inner join limits l on l.limits_id=rl.limits_id
+  		</select>
+  		<resultMap type="Administrator" id="adminDetails">
+  			<id column="admin_id" property="admin_id"/>
+  			<result column="admin_name" property="admin_name"/>
+  			<result column="admin_pwd" property="admin_pwd"/>
+  			<result column="admin_disabled" property="admin_disabled"/>
+  			<association property="role" javaType="Role">
+  				<id column="role_id" property="role_id"/>
+	  			<result column="role_name" property="role_name"/>
+	  			<result column="role_desc" property="role_desc"/>
+	  			<collection property="limits" ofType="Limits">
+	  				<id column="limits_id" property="limits_id"/>
+	  				<result column="limits_name" property="limits_name"/>
+	  				<result column="limits_desc" property="limits_desc"/>
+	  			</collection>
+	  		</association>
+  		</resultMap>
+  </mapper>

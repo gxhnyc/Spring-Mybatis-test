@@ -6,6 +6,7 @@
   
   <!--    namespace对应Mapper接口名                -->
   <mapper namespace="mapper.AuthorMapper">
+  		<!-- findBooksByAuthorName 通过作者姓名查找相关信息 -->
   		<select id="findBooksByAuthorName" resultMap="authorDetail">
   			  select a.author_id,a.author_name,a.author_gender,a.author_brief,
               	   	 b.book_id,b.book_name,b.book_brief,
@@ -16,7 +17,7 @@
 	            inner join publisher p on p.publisher_id=b.publisher_id
 		       where a.author_name=#{author_name} 
   		</select>
-  		<!-- findInfoByID -->  		
+  		<!-- findInfoByID 通过ID查找相关信息 -->  		
   		<select id="findInfoByID" resultMap="authorDetail">
   			select a.author_id,a.author_name,a.author_gender,a.author_brief,
               	   b.book_id,b.book_id,b.book_name,b.book_brief,
@@ -28,7 +29,7 @@
      		where a.author_id=#{author_id}
   		</select> 
   		
-  		<!-- findAllInfo -->
+  		<!-- findAllInfo 查找所有信息-->
   		<select id="findAllInfo" resultMap="authorDetail">
   			 select a.author_id,a.author_name,a.author_gender,a.author_brief,
 	              	b.book_id,b.book_name,b.book_brief,
